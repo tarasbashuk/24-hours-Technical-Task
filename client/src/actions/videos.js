@@ -3,7 +3,8 @@ import {
     SEARCH_VIDEO,
     PLAY_VIDEO,
     SAVE_VIDEO,
-    GET_HISTORY
+    GET_HISTORY,
+    DELETE_VIDEO
 } from "./types"
 
 //Search video
@@ -32,7 +33,7 @@ export const searchVideo = (query) => async dispatch => {
     }
 }
 
-// Play and save chosen video
+// Play chosen video
 
 export const playVideo = (video) => dispatch => {
 
@@ -92,4 +93,20 @@ export const getHistory = () => async dispatch => {
     } catch (err) {
         console.error(err)
     }
+}
+
+// delete video by _id 
+
+export const deleteVideo = (_id) => async dispatch => {
+    try {
+        await axios.delete(`/api/videos/${_id}`)
+  
+        dispatch({
+            type: DELETE_VIDEO,
+            payload: _id
+        })
+  
+    } catch (err) {
+        console.error(err)
+      }
 }

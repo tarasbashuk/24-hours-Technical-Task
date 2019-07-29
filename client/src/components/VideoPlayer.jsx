@@ -8,24 +8,19 @@ const VideoPlayer = ({currentVideo, playing}) => {
     if (!playing) {
         return <div>Loading ...</div>;
     }
-    const videoSrc = `https://www.youtube.com/embed/${currentVideo.id.videoId}?autoplay=1`;
-    console.log(typeof(currentVideo));
+    const videoSrc = `https://www.youtube.com/embed/${currentVideo}?autoplay=1`;
     return (
         <div>
             <div className='ui embed'>
                 <iframe src={videoSrc} allowFullScreen title='Video player' autoPlay width="640" height="360" id="player"/>
-            </div>
-            <div className='ui segment'>
-                <h4 className='ui header'>{currentVideo.snippet.title}</h4>
-                <p>{currentVideo.snippet.description}</p>
             </div>
         </div>
 
     )
 }
 VideoPlayer.propTypes = {
-    currentVideo: PropTypes.object.isRequired,
-    playing: PropTypes.bool.isRequired,
+    currentVideo: PropTypes.string.isRequired,
+    playing: PropTypes.bool.isRequired
 }
 
 const mapStateToProps = state => ({

@@ -56,6 +56,31 @@ console.log('from db', videos);
         res.status(500).send('Server error')
     }
     })
-   
+  
+// @route  DELETE api/videos/:_id
+// @decs  Delete  video by _id
+// @acces Public
+
+router.delete("/:_id", async (req, res) => {
+    try {
+        const video = await Video.findById(req.params._id)
+
+        if (!video)
+            return res.status(404).json({
+                msg: "Post not found"
+            })
+
+console.log(video);
+
+        await video.remove()
+
+        res.json({
+            msg: "Video  deleted"
+        })
+    } catch (err) {
+        console.error(err.message)
+        res.status(500).send("Server error")
+    }
+})
 
 module.exports = router;

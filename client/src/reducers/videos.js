@@ -4,7 +4,7 @@ const initialState = {
     searchQuery: '',
     searchResult: [],
     searchHistory: [],
-    currentVideo: {},
+    currentVideo: '',
     loaded: false,
     playing: false
     
@@ -26,11 +26,10 @@ export default function (state = initialState, action) {
             return {...state, searchHistory:  newSearchHistory, playing: true}
 
         case GET_HISTORY:
-            return {...state, searchHistory:  payload,}
+            return {...state, searchHistory:  payload}
 
         case DELETE_VIDEO:
-            return
-            // return {...state, token: null, isAuthenticated: false, loading: false}
+            return {...state, searchHistory: state.searchHistory.filter(video=> video._id !== payload), loading: false}
 
         default:
             return {...state}      

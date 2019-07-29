@@ -12,7 +12,7 @@ const VideoItem = ({video , playVideo, saveVideo}) => {
             </div>
             <button onClick={ () => {
                 console.log(video);
-                playVideo(video)
+                playVideo(video.id.videoId)
                 saveVideo(video)
                 } } >Play!!</button>
         </div>
