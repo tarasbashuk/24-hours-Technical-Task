@@ -1,38 +1,61 @@
 const express = require('express')
 const router = express.Router()
-const fetch = require('node-fetch')
-const config = require('config')
-const API_KEY = config.get('API_KEY')
 
+const Video = require('../../models/Video')
 
-// const VideoSerach = require('../../models/VideoSerach')
-
-// @route GET api/videos
-// @desс  Test route
+// @route POST api/videos
+// @desс  Save video
 // @acces Public
 
 
-router.post('/',async (req, res) => {
-    // let input = "cat"
+router.post('/', async (req, res) => {
+    const {
+        thumbnails,
+        alt,
+        title,
+        videoId
+    } = req.body
 
-    // let youtubeUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=3&q=${input}&type=video&key=${API_KEY}`;
-    // let url = `https://www.googleapis.com/youtube/v3/search`;
-    // const options = {
-    //     part: "snippet",
-    //     key: API_KEY,
-    //     maxResults: 3
-    // }
+    try {
+        let video = new Video({
+            thumbnails,
+            alt,
+            title,
+            videoId
+        })
 
-    // let videos = await axios.get(youtubeUrl)
-    // console.log(videos);
-    
-        // .then(res => res.json())
-        // .then(json => json.items)
-        // .catch(e => console.log(e));
-    // res.send(videos)
+        await video.save()
+        console.log(video);
+        
+
+        res.json(video)
+           
+    } catch (err) {
+        console.error(err.message)
+        res.status(500).send('Server error')
+    }
     })
 
+// @route POST api/videos
+// @desс  Save video
+// @acces Public
 
+
+router.get('/', async (req, res) => {
+    try {
+       
+        const videos = await Video.find().sort({
+            date: -1
+        })
+console.log('from db', videos);
+        
+        res.json(videos)
+           
+    } catch (err) {
+        console.error(err.message)
+        res.status(500).send('Server error')
+    }
+    })
    
 
 module.exports = router;
