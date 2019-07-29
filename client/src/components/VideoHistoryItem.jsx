@@ -1,27 +1,75 @@
-import React from 'react'
-import { connect } from 'react-redux'
+import React from "react"
+import { connect } from "react-redux"
 import PropTypes from "prop-types"
-import {playVideo, deleteVideo} from '../actions/videos' 
+import { playVideo, deleteVideo } from "../actions/videos"
 
-const VideoHistoryItem = ({video , playVideo, deleteVideo}) => {
-    const {_id, thumbnails, alt, title, videoId} = video
-    return (
-        <div className=' video-item item' onClick={ () => playVideo(videoId) }>
-            <img className='ui image' src={thumbnails} alt={alt}/>
-            <div className='content'>
-                <div className='header'>{title}</div>
-            </div>
-            <button onClick={ () => {
-                deleteVideo(_id)
-                } } >Delete!!</button>
-        </div>
-    )
-};
+import { Grid, Typography, Paper, Button } from "@material-ui/core"
+import { makeStyles } from "@material-ui/core/styles"
 
-VideoHistoryItem.propTypes = {
-    video: PropTypes.object.isRequired,
-    playVideo: PropTypes.func.isRequired,
-    deleteVideo: PropTypes.func.isRequired
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1
+  },
+  paper: {
+    padding: theme.spacing(1),
+    textAlign: "left",
+    color: theme.palette.text.primary,
+    width: "100%",
+    marginLeft: "20px"
+  },
+  btn: {
+    marginTop: "10px",
+  },
+  img: {
+    maxWidth: "90%"
+  },
+}))
+
+const VideoHistoryItem = ({ video, playVideo, deleteVideo }) => {
+    
+  const classes = useStyles()
+  const { _id, thumbnails, alt, title, videoId } = video
+
+  return (
+    <Paper className={classes.paper}>
+      <Grid
+        container
+        direction='row'
+        justify='flex-start'
+        alignItems='center'
+        onClick={() => playVideo(videoId)}
+      >
+        <Grid item xs={4}>
+          <img src={thumbnails} alt={alt} className={classes.img}/>
+        </Grid>
+        <Grid item xs={8}>
+          <Typography component='h3' variant='body2'>
+            {title}
+          </Typography>
+          <Button
+            variant='outlined'
+            color='secondary'
+            size='small'
+            className={classes.btn}
+            onClick={() => {
+              deleteVideo(_id)
+            }}
+          >
+            Delete
+          </Button>
+        </Grid>
+      </Grid>
+    </Paper>
+  )
 }
 
-export default connect(null, {playVideo, deleteVideo}) (VideoHistoryItem);
+VideoHistoryItem.propTypes = {
+  video: PropTypes.object.isRequired,
+  playVideo: PropTypes.func.isRequired,
+  deleteVideo: PropTypes.func.isRequired
+}
+
+export default connect(
+  null,
+  { playVideo, deleteVideo }
+)(VideoHistoryItem)

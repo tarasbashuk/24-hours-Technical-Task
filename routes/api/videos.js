@@ -1,14 +1,13 @@
-const express = require('express')
+const express = require("express")
 const router = express.Router()
 
-const Video = require('../../models/Video')
+const Video = require("../../models/Video")
 
 // @route POST api/videos
 // @desс  Save video
 // @acces Public
 
-
-router.post('/', async (req, res) => {
+router.post("/", async (req, res) => {
     const {
         thumbnails,
         alt,
@@ -25,38 +24,31 @@ router.post('/', async (req, res) => {
         })
 
         await video.save()
-        console.log(video);
-        
-
         res.json(video)
-           
+        
     } catch (err) {
         console.error(err.message)
-        res.status(500).send('Server error')
+        res.status(500).send("Server error")
     }
-    })
+})
 
 // @route POST api/videos
 // @desс  Save video
 // @acces Public
 
-
-router.get('/', async (req, res) => {
+router.get("/", async (req, res) => {
     try {
-       
         const videos = await Video.find().sort({
-            date: -1
+            date: 1
         })
-console.log('from db', videos);
-        
         res.json(videos)
-           
+
     } catch (err) {
         console.error(err.message)
-        res.status(500).send('Server error')
+        res.status(500).send("Server error")
     }
-    })
-  
+})
+
 // @route  DELETE api/videos/:_id
 // @decs  Delete  video by _id
 // @acces Public
@@ -70,8 +62,6 @@ router.delete("/:_id", async (req, res) => {
                 msg: "Post not found"
             })
 
-console.log(video);
-
         await video.remove()
 
         res.json({
@@ -83,4 +73,4 @@ console.log(video);
     }
 })
 
-module.exports = router;
+module.exports = router

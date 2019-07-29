@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const Search = ({ loaded, searchVideo }) => {
+const Search = ({ searchVideo }) => {
   const classes = useStyles()
 
   const [formData, setFormData] = useState({
@@ -60,15 +60,15 @@ const Search = ({ loaded, searchVideo }) => {
     e.preventDefault()
     const err = validate()
     if (!err) {
-      searchVideo(query)
+      await searchVideo(query)
     }
   }
 
   return (
-    <Container component='main' maxWidth='xs' style={{ height: "80vh" }}>
+    <Container component='main' maxWidth='sm' >
       <CssBaseline />
       <div className={classes.paper}>
-        <Typography component='h1' variant='h5'>
+        <Typography component='h2' variant='h5'>
           Search video
         </Typography>
         <form className={classes.form} onSubmit={e => onSubmit(e)}>
@@ -93,7 +93,7 @@ const Search = ({ loaded, searchVideo }) => {
             color='primary'
             className={classes.submit}
           >
-            Search!
+            Search
           </Button>
         </form>
       </div>
@@ -102,15 +102,15 @@ const Search = ({ loaded, searchVideo }) => {
 }
 
 Search.propTypes = {
-  loaded: PropTypes.bool.isRequired,
+  // loaded: PropTypes.bool.isRequired,
   searchVideo: PropTypes.func.isRequired
 }
 
-const mapStateToProps = state => ({
-  loaded: state.videos.loaded
-})
+// const mapStateToProps = state => ({
+//   loaded: state.videos.loaded
+// })
 
 export default connect(
-  mapStateToProps,
+  null,
   { searchVideo }
 )(Search)

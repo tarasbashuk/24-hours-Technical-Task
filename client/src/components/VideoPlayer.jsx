@@ -2,19 +2,18 @@ import React from 'react'
 import { connect } from "react-redux"
 import PropTypes from "prop-types"
 
+import { Container } from "@material-ui/core"
 
 const VideoPlayer = ({currentVideo, playing}) => {
     
     if (!playing) {
-        return <div>Loading ...</div>;
+        return null
     }
     const videoSrc = `https://www.youtube.com/embed/${currentVideo}?autoplay=1`;
     return (
-        <div>
-            <div>
-                <iframe src={videoSrc} allowFullScreen title='Video player' autoPlay width="640" height="360"/>
-            </div>
-        </div>
+        <Container maxWidth="sm">
+                <iframe src={videoSrc} allowFullScreen title='Video player' autoPlay width="500px" height="290"/>
+        </Container>
 
     )
 }
