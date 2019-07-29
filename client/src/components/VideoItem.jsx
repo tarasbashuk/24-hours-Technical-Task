@@ -5,13 +5,12 @@ import {playVideo, saveVideo} from '../actions/videos'
 
 const VideoItem = ({video , playVideo, saveVideo}) => {
     return (
-        <div className=' video-item item'>
-            <img className='ui image' src={video.snippet.thumbnails.medium.url} alt={video.snippet.description}/>
-            <div className='content'>
-                <div className='header '>{video.snippet.title}</div>
+        <div>
+            <img src={video.snippet.thumbnails.medium.url} alt={video.snippet.description}/>
+            <div>
+                <div>{video.snippet.title}</div>
             </div>
             <button onClick={ () => {
-                console.log(video);
                 playVideo(video.id.videoId)
                 saveVideo(video)
                 } } >Play!!</button>

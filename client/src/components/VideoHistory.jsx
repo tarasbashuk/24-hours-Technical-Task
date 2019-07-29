@@ -6,20 +6,16 @@ import {getHistory} from '../actions/videos'
 
 const VideosHistory = ({searchHistory, getHistory}) => {
     useEffect(() => {
-        console.log("useEffect");
-        
         getHistory()
     },[getHistory])
 
     if (searchHistory === []) return <div >You havent seen any video yet</div>
-    // const videos = searchResult.items
-    console.log(searchHistory);
     
     const renderedVideos =  searchHistory.map((video) => {
         return <VideoHistoryItem key={video._id} video={video} />
     });
 
-    return <div className='ui relaxed divided list'>{renderedVideos}</div>;
+    return <div >{renderedVideos}</div>;
 };
 
 VideosHistory.propTypes = {

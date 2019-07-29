@@ -7,7 +7,6 @@ const initialState = {
     currentVideo: '',
     loaded: false,
     playing: false
-    
 } 
 
 export default function (state = initialState, action) {

@@ -11,8 +11,8 @@ const VideoPlayer = ({currentVideo, playing}) => {
     const videoSrc = `https://www.youtube.com/embed/${currentVideo}?autoplay=1`;
     return (
         <div>
-            <div className='ui embed'>
-                <iframe src={videoSrc} allowFullScreen title='Video player' autoPlay width="640" height="360" id="player"/>
+            <div>
+                <iframe src={videoSrc} allowFullScreen title='Video player' autoPlay width="640" height="360"/>
             </div>
         </div>
 
