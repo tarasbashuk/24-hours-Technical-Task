@@ -12,7 +12,7 @@ const VideoPlayer = ({currentVideo, playing}) => {
     const videoSrc = `https://www.youtube.com/embed/${currentVideo}?autoplay=1`;
     return (
         <Container maxWidth="sm">
-                <iframe src={videoSrc} allowFullScreen title='Video player' autoPlay width="500px" height="290"/>
+                <iframe src={videoSrc} allowFullScreen title='Video player' autoPlay width="560px" height="320px"/>
         </Container>
 
     )

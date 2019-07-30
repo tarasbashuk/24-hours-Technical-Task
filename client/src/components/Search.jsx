@@ -2,8 +2,7 @@ import React, { useState } from "react"
 import { connect } from "react-redux"
 import PropTypes from "prop-types"
 import { searchVideo } from "../actions/videos"
-import { Button, TextField, Typography, Container } from "@material-ui/core"
-import CssBaseline from "@material-ui/core/CssBaseline"
+import { Button, TextField, Typography, Container, CssBaseline } from "@material-ui/core"
 import { makeStyles } from "@material-ui/core/styles"
 
 const useStyles = makeStyles(theme => ({
@@ -12,8 +11,10 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: theme.palette.common.white
     }
   },
+
   paper: {
     marginTop: theme.spacing(8),
+    marginRight: '15%',
     display: "flex",
     flexDirection: "column",
     alignItems: "center"
@@ -65,11 +66,11 @@ const Search = ({ searchVideo }) => {
   }
 
   return (
-    <Container component='main' maxWidth='sm' >
+    <Container component='main' maxWidth='sm'>
       <CssBaseline />
       <div className={classes.paper}>
         <Typography component='h2' variant='h5'>
-          Search video
+          Video Search
         </Typography>
         <form className={classes.form} onSubmit={e => onSubmit(e)}>
           <TextField
@@ -102,13 +103,8 @@ const Search = ({ searchVideo }) => {
 }
 
 Search.propTypes = {
-  // loaded: PropTypes.bool.isRequired,
   searchVideo: PropTypes.func.isRequired
 }
-
-// const mapStateToProps = state => ({
-//   loaded: state.videos.loaded
-// })
 
 export default connect(
   null,

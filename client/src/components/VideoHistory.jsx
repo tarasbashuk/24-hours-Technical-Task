@@ -10,9 +10,21 @@ const VideosHistory = ({ searchHistory, getHistory, loaded }) => {
   useEffect(() => {
     getHistory()
   }, [getHistory])
-
+  
   if (searchHistory.length === 0)
-    return <div>You havent seen any video yet</div>
+    return (
+      <Grid container spacing={2}>
+        <Grid item>
+          <Typography
+            component='h2'
+            variant='h6'
+            style={{ marginLeft: "30px" }}
+          >
+            You haven't watched any video yet
+          </Typography>
+        </Grid>
+      </Grid>
+    )
 
   const renderedVideos = searchHistory.map(video => {
     return <VideoHistoryItem key={video._id} video={video} />

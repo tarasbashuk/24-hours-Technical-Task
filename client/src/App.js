@@ -3,7 +3,7 @@ import { Provider } from "react-redux"
 import store from "./store"
 import Header from "./components/Header"
 import Search from "./components/Search"
-import VideosList from "./components/VideosList"
+import SearchList from "./components/SearchList"
 import VideoPlayer from "./components/VideoPlayer"
 import VideoHistory from "./components/VideoHistory"
 
@@ -35,7 +35,7 @@ function App() {
               <VideoPlayer />
             </Grid>
             <Grid item xs={4}>
-              <VideosList />
+              <SearchList />
             </Grid>
           </Grid>
         </div>

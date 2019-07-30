@@ -1,5 +1,7 @@
 import axios from "axios"
 import {
+  KEY,
+  URL,
   SEARCH_VIDEO,
   PLAY_VIDEO,
   SAVE_VIDEO,
@@ -11,8 +13,6 @@ import {
 
 export const searchVideo = query => async dispatch => {
   try {
-    const KEY = "AIzaSyCDQyWvOsbRPQmFvtTM-NJzUV4T6bPhf0s"
-    const URL = "https://www.googleapis.com/youtube/v3/search"
     const params = {
       part: "snippet",
       maxResults: 5,

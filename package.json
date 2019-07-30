@@ -1,7 +1,7 @@
 {
   "name": "walkme-test-project",
   "version": "1.0.0",
-  "description": "WalkMe Technical Task",
+  "description": "Bashuk Technical Task",
   "main": "server.js",
   "scripts": {
     "start": "node server",

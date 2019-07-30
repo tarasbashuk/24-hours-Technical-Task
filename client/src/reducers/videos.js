@@ -16,7 +16,7 @@ export default function (state = initialState, action) {
             return {...state, searchResult: payload}
 
         case PLAY_VIDEO:
-            return {...state, currentVideo: payload, playing: true}
+            return {...state, currentVideo: payload, playing: true, loaded: false}
 
         case SAVE_VIDEO:
             let newSearchHistory = state.searchHistory
@@ -24,7 +24,7 @@ export default function (state = initialState, action) {
             return {...state, searchHistory:  newSearchHistory, loaded: true}
 
         case GET_HISTORY:
-            return {...state, searchHistory:  payload, loaded: true}
+            return {...state, searchHistory:  payload, loaded: false}
 
         case DELETE_VIDEO:
             return {...state, searchHistory: state.searchHistory.filter(video=> video._id !== payload), loaded: true, playing: false}
